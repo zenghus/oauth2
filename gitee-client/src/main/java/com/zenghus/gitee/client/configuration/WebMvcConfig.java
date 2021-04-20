@@ -1,6 +1,7 @@
 package com.zenghus.gitee.client.configuration;
 
 import com.zenghus.gitee.client.filter.GiteeLoginFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
@@ -11,9 +12,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
  */
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
+
+    @Autowired
+    GiteeLoginFilter giteeLoginFilter;
+
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new GiteeLoginFilter()).addPathPatterns("/**")
+        registry.addInterceptor(giteeLoginFilter).addPathPatterns("/**")
                 .excludePathPatterns("/")
                 .excludePathPatterns("/gitee/callback");
         super.addInterceptors(registry);

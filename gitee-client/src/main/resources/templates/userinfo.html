@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<!-- 导入thymeleaf -->
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>userinfo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body id="body">
+<h2>登陆成功</h2>
+<!-- ${ 读取name元素存放的内容 } }-->
+<h2 th:text=" 'gitee name is ' + ${session.userinfo.name}"></h2>
+</body>
+</html>

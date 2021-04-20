@@ -4,6 +4,7 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.zenghus.gitee.client.util.CookieUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -18,6 +19,12 @@ import java.net.URLDecoder;
 @Component
 public class GiteeLoginFilter implements HandlerInterceptor {
 
+    @Value("${gitee.client_id}")
+    private String client_id;
+
+    @Value("${gitee.redirect_url}")
+    private String redirect_url;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String user= CookieUtil.readLoginToken(request,"user");
@@ -30,7 +37,8 @@ public class GiteeLoginFilter implements HandlerInterceptor {
             }
         }
         // 不存在重定向到错误页面，并返回 false
-        response.sendRedirect("https://gitee.com/oauth/authorize?client_id=7b444dc1a345179a1f5f42f8127212d9606f9b0a2194306c51dd025720737789&redirect_uri=http://localhost:8080/gitee/callback&response_type=code");
+        //response.sendRedirect("https://gitee.com/oauth/authorize?client_id=7b444dc1a345179a1f5f42f8127212d9606f9b0a2194306c51dd025720737789&redirect_uri=http://localhost:8080/gitee/callback&response_type=code");
+        response.sendRedirect("https://gitee.com/oauth/authorize?client_id="+client_id+"&redirect_uri="+redirect_url+"&response_type=code");
         return false;
     }
 }
