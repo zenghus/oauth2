@@ -1,0 +1,15 @@
+*/target
+target/
+*.iml
+*/.idea
+.idea/
+*.class
+.project
+.settings/
+.classpath
+logs/
+*/.mvn
+.mvn/
+.extract/
+.flattened-pom.xml
+derby.log
