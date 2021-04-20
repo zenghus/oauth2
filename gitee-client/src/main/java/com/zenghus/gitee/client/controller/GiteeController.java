@@ -47,6 +47,7 @@ public class GiteeController {
                 JSONObject jsonObject = JSONUtil.parseObj(URLDecoder.decode(user, "utf-8"));
                 if (jsonObject.isNull("error")) {
                     response.sendRedirect(mv.getViewName());
+                    return;
                 }
             }
             //https://gitee.com/oauth/token?grant_type=authorization_code&code=63efb53df9cacba4817586bce93faf971682c3bc0e7d1a5911521ed3a36e167b&client_id=7b444dc1a345179a1f5f42f8127212d9606f9b0a2194306c51dd025720737789&redirect_uri=http://localhost:8080/gitee/callback&client_secret=f86d67f54292a1198dddc4c0199f8b9c5410525d91dd4f5b9c4887aa8afdb232
